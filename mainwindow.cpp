@@ -80,6 +80,11 @@ void MainWindow::on_pushButton_Start_clicked()
         QList<QListWidgetItem *> currentSelections;
         currentSelections = ui->listWidget_files->selectedItems();
 
+        if (currentSelections.count() == 0) {
+            messageBox("Please select the images you want to resize.");
+            return;
+        }
+
         foreach (QListWidgetItem* item, currentSelections) {
             // Load image
             if (image.load(directory.path() + "/" + item->text())) {
